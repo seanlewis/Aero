@@ -1,19 +1,23 @@
 #! /usr/bin/env python
 
 from flask import Flask, render_template, request
+from flask.ext.pymongo import PyMongo
 
 from pymongo import MongoClient
 
 app = Flask(__name__)
 
+# Connect to MongoDB at localhost:27017 
+mongo = PyMongo(aerodb)
+
+# Access the collection
+aero = mongo.db.aerodromes
+
 @app.route("/test")
 def test_connection():
-    # Connect to MongoDB at localhost:27017 
-    client = MongoClient()
-    
-    # Access the DB object
-    db = client.aerodb
-    return "Hello World!"
+    icao_codes = mongo.db.aerodromes.find({'ICAO Codes': 'NZAA'})
+    return render_template('index.html',
+        icao_codes=icao_codes)
 
 @app.route("/")
 def index():
