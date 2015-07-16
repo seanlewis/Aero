@@ -2,12 +2,17 @@
 
 from flask import Flask, render_template, request
 
-import MySQLdb as mysql
+from pymongo import MongoClient
 
 app = Flask(__name__)
 
 @app.route("/test")
-def hello():
+def test_connection():
+    # Connect to MongoDB at localhost:27017 
+    client = MongoClient()
+    
+    # Access the DB object
+    db = client.aerodb
     return "Hello World!"
 
 @app.route("/")
