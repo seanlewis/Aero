@@ -40,14 +40,14 @@
         <div class="content-header">
           <h1>
             <a id="menu-toggle" href="#" class="btn btn-default"><i class="icon-reorder"></i></a>
-            All Media Networks
+            All
           </h1>
         </div>
         <!-- Keep all page content within the page-content inset div! -->
         <div class="page-content inset">
           <div class="row">
             <div class="col-md-10">
-              <p class="lead">The list below displays all media options we use at Young &amp; Shand.</p>
+              <p class="lead">The list below </p>
             </div>
             <div class="right-align">
                 <!-- Split button -->
@@ -58,9 +58,6 @@
                     <span class="sr-only">Toggle Dropdown</span>
                   </button>
                   <ul class="dropdown-menu" role="menu">
-                    {% for category in categories %}
-                    <li><a href="?category={{category['category']}}">{{category['category']}}</a></li>
-                    {% endfor %} 
                   </ul>
                 </div>
               </div>
@@ -68,43 +65,20 @@
               <table class="table table-striped">
                 <tr>
                   <th>Name</th>
-                  <th>Notes</th>
+                  <th>ICAO</th>
                 </tr>
-                {% for code in icao_codes %}
+                {% for i in items %}
                   <tr>
-                    <td>{{network['name']}}</td>
-                    <td>{{network['notes']}}</td>             
+                    <td>{{ i.CommonName }}</td>
+                    <td>{{ i.ICAO }}</td>            
                   </tr>
                 {% endfor %}    
               </table>
-            <div class="table">
-              <table class="table table-striped">
-                <tr>
-                  <th>Name</th>
-                  <th>Network</th>
-                  <th>CPC</th> 
-                  <th>Max CPC</th>
-                  <th>Min CPC</th>
-                  <th>Notes</th>
-                </tr>
-                {% for network in media %}
-                  <tr>
-                    <td>{{network['name']}}</td>
-                    <td>{{network['network']}}</td>
-                    <td>${{network['cpc']}}</td>
-                    <td>${{network['maxcpc']}}</td>
-                    <td>${{network['mincpc']}}</td>
-                    <td>{{network['notes']}}</td>                
-                  </tr>
-                {% endfor %}    
-              </table>
-            </div>
           </div>
         </div>
       </div>
       
     </div>
-	  {{icao_codes}}
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/static/js/jquery.js"></script>
